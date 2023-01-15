@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bags Catalog</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script
+        src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+        integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+        crossorigin="anonymous"></script>
+</head>
+<body>
+        <div class="header">
+                <h1 class="header-title">Ackbee</h1>
+                <div class="bag-menu">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="search-query" id="search-query" placeholder="Search">
+                </div>
+        </div>
+        <div class="catalog-header">
+                <h2>Bags</h2>
+                <div class="filters">
+                        <div class="categories">
+                                <select name="category" id="category">
+                                        <option value="" disabled selected hidden>Shop by Category</option>
+                                        <option value="handle">Handles</option>
+                                        <option value="noHandle">No Handles</option>
+                                </select>
+                        </div>
+                        <div class="filter-sort">
+                                <select name="sort" id="sort">
+                                        <option value="" disabled selected hidden>Filter and Sort</option>
+                                        <option value="low">Low to High</option>
+                                        <option value="high">High to Low</option>
+                                </select>
+                        </div>
+
+                </div>
+                <p class="products-count">0</p>
+        </div>
+        <div class="catalog">
+                <div class="product">
+                        <div class="product-img">
+                                <img src="images/cub.PNG" alt="">
+                        </div>
+                        <div class="product-info">
+                                <p class="product-name">Cub</p>
+                                <p class="product-details">Brown Kraft Twisted Handle Shopping Bag 10”x 5”x 10” (250/case)</p>
+                                <p class="product-price">45.00</p>
+                        </div>
+                </div>
+                <div class="product">
+                        <div class="product-img">
+                                <img src="images/cub.PNG" alt="">
+                        </div>
+                        <div class="product-info">
+                                <p class="product-name">Cub</p>
+                                <p class="product-details">Brown Kraft Twisted Handle Shopping Bag 10”x 5”x 10” (250/case)</p>
+                                <p class="product-price">45.00</p>
+                        </div>
+                </div>
+        </div>
+        <div class="footer">
+                <div class="footer-items">
+                        <ul>
+                                <li>Privacy Policy</li>
+                                <li>Terms of Use</li>
+                                <li>Accessibility</li>
+                                <li>Ackbee.com</li>
+                                <br>
+                                <li><i class="fa-regular fa-copyright"></i>2022 Ackbee All Rights Reserved</li>
+                        </ul>
+                </div>
+        </div>
+</body>
+</html>

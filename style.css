@@ -1,0 +1,215 @@
+* {
+        margin: 0;
+        padding: 0;
+}
+
+/* ------- START HEAD & FOOT ------- */
+
+.header {
+        width: inherit;
+        background-color: #000;
+        height: 18vh;
+        position: relative;
+}
+
+.header-title {
+        text-align: center;
+        font-size: 3rem;
+        color: #fff;
+        padding: 1rem;
+}
+
+.bag-menu {
+        position: absolute;
+        color: #fff;
+        right: 0;
+        top: 0;
+        padding: 1rem;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: space-between;
+}
+
+.bag-menu i {
+        padding: .5rem;
+}
+
+.search {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 1px solid #fff;
+        border-radius: 1rem;
+        padding: .6rem;
+        width: 16rem;
+        height: 1rem;
+}
+
+#search-query {
+        background-color: transparent;
+        border: none;
+        /* padding-right: .5rem; */
+        width: 15rem;
+        right: 1vw;
+        position: absolute;
+        color: #fff;
+        outline: none;
+
+
+}
+
+.search i {
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+}
+
+.footer {
+        background-color: #000;
+        position: relative;
+        width: inherit;
+        height: 20vh;
+        bottom: 0;   
+        color: #fff;  
+}
+
+.footer ul {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: inherit;
+        height: inherit;
+        /* background-color: red; */
+        padding: 2rem;
+        text-align: center;
+
+}
+
+.footer li {
+        display: inline;
+        padding-right: 1rem;
+
+}
+
+/* .footer li::after {
+        content: '|';
+        position: absolute;
+        padding: 0 1rem 0 1rem;
+} */
+
+/* ------- END HEAD & FOOT ------- */
+
+
+/* ------- START INDEX ------- */
+
+
+.slides, .bags-section, .cups-section {
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        width: inherit;
+        height: 25vh;     
+
+}
+
+.slides {
+        background-image: url(images/main-header.jpeg);
+        margin-bottom: 1%;
+
+}
+
+.bags-section {
+        background-image: url(images/bags-header.jpeg);
+        margin-bottom: 1%;
+}
+
+.cups-section {
+        background-image: url(images/cups-header.jpeg);
+        background-position: bottom;
+
+}
+
+.section-header {
+        color: white;
+        width: auto;
+        display: flex;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 10vw;
+}
+
+.section-header h2, .section-header i {
+        font-size: 2rem;
+        padding-right: 15px;
+
+}
+
+/* ------- END INDEX ------- */
+
+/* ------- START BAGS ------- */
+
+.catalog-header {
+        padding: 1rem;
+        width: 95%;
+}
+
+.filters {
+        padding: 1rem 0 1rem 0;
+        width: inherit;
+        display: flex;
+        justify-content: space-between;
+}
+
+.filters div {
+        display: inline-block;
+}
+
+#category, #sort {
+        padding: 5px;
+        width: 40vw;
+        height: 4vh;
+        border: 1px solid #000;
+}
+
+.products-count::after {
+        content: 'products';
+        position: relative;
+        padding-left: 5px;
+}
+
+.catalog {
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+}
+
+.product:nth-child(odd) {
+        padding-right: 20px;
+}
+
+.product-img {
+        border: .5px solid #000;
+}
+
+.product-img img {
+        width: 100%;
+}
+
+.product-name {
+        font-weight: bold;
+}
+
+.product-price {
+        font-weight: bold;
+}
+
+.product-price::before {
+        content: '$';
+        position: relative;
+}
+
+
+/* ------- END BAGS ------- */
