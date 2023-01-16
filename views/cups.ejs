@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cups Catalog</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script
+        src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+        integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+        crossorigin="anonymous"></script>
+        <style>
+                .product-price {
+                        padding-bottom: 15px;
+                }
+        </style>
+</head>
+<body>
+        <div class="header">
+                <a href="/"><h1 class="header-title">Ackbee</h1></a>
+                <div class="bag-menu">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="search-query" id="search-query" placeholder="Search">
+                </div>
+        </div>
+        <div class="catalog-header">
+                <h2>Cups</h2>
+                <div class="filters">
+                        <div class="categories">
+                                <select name="category" id="category">
+                                        <option value="" disabled selected hidden>Shop by Category</option>
+                                        <option value="double">Double Layer</option>
+                                        <option value="single">Single Layer</option>
+                                        <option value="cold">Cold Cups</option>
+
+                                </select>
+                        </div>
+                        <div class="filter-sort">
+                                <select name="sort" id="sort">
+                                        <option value="" disabled selected hidden>Filter and Sort</option>
+                                        <option value="low">Low to High</option>
+                                        <option value="high">High to Low</option>
+                                </select>
+                        </div>
+                </div>
+                <p class="products-count"><%= data.products.length %></p>
+        </div>
+        <div class="catalog">
+                <% data.products.forEach(element => { %>
+                        <div class="product">
+                        <div class="product-img">
+                                <img src="images/<%= element.image %>" alt="">
+                                </div>
+                                <div class="product-info">
+                                        <p class="product-name"><%= element.product_name %></p>
+                                        <p class="product-details"><%= element.layers %> Layer <%= element.dimensions %> <%= element.per_case %></p>
+                                        <p class="product-price"><%= element.price %></p>
+                                </div>
+                        </div>
+                <% }); %>
+        </div>
+        <div class="footer">
+                <div class="footer-items">
+                        <ul>
+                                <li>Privacy Policy</li>
+                                <li>Terms of Use</li>
+                                <li>Accessibility</li>
+                                <li>Ackbee.com</li>
+                                <br>
+                                <li><i class="fa-regular fa-copyright"></i>2022 Ackbee All Rights Reserved</li>
+                        </ul>
+                </div>
+        </div>
+        <script>
+        </script>
+</body>
+</html>

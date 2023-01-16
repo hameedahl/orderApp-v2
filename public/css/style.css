@@ -12,6 +12,10 @@
         position: relative;
 }
 
+a {
+        text-decoration: none;
+}
+
 .header-title {
         text-align: center;
         font-size: 3rem;
@@ -79,10 +83,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: inherit;
+        width: 80vw;
         height: inherit;
-        /* background-color: red; */
-        padding: 2rem;
         text-align: center;
 
 }
@@ -115,18 +117,18 @@
 }
 
 .slides {
-        background-image: url(images/main-header.jpeg);
+        background-image: url(/images/main-header.jpeg);
         margin-bottom: 1%;
 
 }
 
 .bags-section {
-        background-image: url(images/bags-header.jpeg);
+        background-image: url(/images/bags-header.jpeg);
         margin-bottom: 1%;
 }
 
 .cups-section {
-        background-image: url(images/cups-header.jpeg);
+        background-image: url(/images/cups-header.jpeg);
         background-position: bottom;
 
 }
@@ -153,7 +155,7 @@
 
 .catalog-header {
         padding: 1rem;
-        width: 95%;
+        width: inherit;
 }
 
 .filters {
@@ -169,7 +171,7 @@
 
 #category, #sort {
         padding: 5px;
-        width: 40vw;
+        width: 43vw;
         height: 4vh;
         border: 1px solid #000;
 }
@@ -181,17 +183,22 @@
 }
 
 .catalog {
-        padding: 1rem;
-        display: flex;
-        flex-direction: row;
+        padding: .5rem;
+        width: inherit;
 }
 
+.product {
+        width: 48%;
+        display: inline-block;
+
+}
 .product:nth-child(odd) {
-        padding-right: 20px;
+        padding-right: 10px;
 }
 
 .product-img {
         border: .5px solid #000;
+        margin-bottom: 5px;
 }
 
 .product-img img {
@@ -210,6 +217,31 @@
         content: '$';
         position: relative;
 }
+
+.colors {
+        width: 50%;
+        height: 4vh;
+        padding: 10px 0 15px 0;
+}
+
+.colors span {
+        width: 6vw;
+        height: 3vh;
+        border-radius: 50%;
+        border: .5px solid #000;
+}
+
+.color1 {
+        background-color: #8C724C;
+}
+
+.color1, .color2 {
+        display: inline-block;
+}
+
+
+
+
 
 
 /* ------- END BAGS ------- */
