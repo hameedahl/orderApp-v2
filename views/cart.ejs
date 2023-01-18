@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cups Catalog</title>
+        <title>Bags Catalog</title>
         <link rel="stylesheet" href="css/style.css">
         <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -12,11 +12,6 @@
         src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
         integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
         crossorigin="anonymous"></script>
-        <style>
-                .product-price {
-                        padding-bottom: 15px;
-                }
-        </style>
 </head>
 <body>
         <div class="header">
@@ -35,41 +30,46 @@
                         <input type="text" name="search-query" id="search-query" placeholder="Search">
                 </div>
         </div>
-        <div class="catalog-header">
-                <h2>Cups</h2>
-                <div class="filters">
-                        <div class="categories">
-                                <select name="category" id="category">
-                                        <option value="" disabled selected hidden>Shop by Category</option>
-                                        <option value="double">Double Layer</option>
-                                        <option value="single">Single Layer</option>
-                                        <option value="cold">Cold Cups</option>
-
-                                </select>
+        <div class="cart-tile">
+                <h4>Shopping Bag</h4>  
+        </div>
+        <div class="cart-details">
+                <div class="cart-item">
+                        <div class="cart-item-img">
+                                <img src="images/cub.PNG" alt="">
                         </div>
-                        <div class="filter-sort">
-                                <select name="sort" id="sort">
-                                        <option value="" disabled selected hidden>Filter and Sort</option>
-                                        <option value="low">Low to High</option>
-                                        <option value="high">High to Low</option>
-                                </select>
+                        <div class="cart-item-info">
+                                <div class="item-title">
+                                        <p class="product-name">Cub</p>
+                                        <p class="product-info">Brown Kraft Twisted Handle Shopping Bag 10”x 5”x 10” (250/case)</p>
+                                        <p class="product-color">White</p>
+                                </div>
+                                <div class="product-price cart-item-price">45.00</div>
+                                <div class="cart-quan-selector"></div>
+                                <div class="edit-cart">
+                                        <p class="edit-cart">Edit</p>
+                                        <p class="rm-cart">Remove</p>
+                                </div>
                         </div>
                 </div>
-                <p class="products-count"><%= data.products.length %></p>
-        </div>
-        <div class="catalog">
-                <% data.products.forEach(element => { %>
-                        <div class="product">
-                        <div class="product-img">
-                                <img src="images/<%= element.image %>" alt="">
+                <div class="order-summary">
+                        <h4>Order Summary</h4>
+                        <div class="order-totals">
+                                <div class="subtotal-container">
+                                        <p>Subtotal</p>
+                                        <p class="subtotal"></p>
                                 </div>
-                                <div class="product-info">
-                                        <p class="product-name"><%= element.product_name %></p>
-                                        <p class="product-details"><%= element.layers %> Layer <%= element.dimensions %> <%= element.per_case %></p>
-                                        <p class="product-price"><%= element.price %></p>
+                                <div class="tax-container">
+                                        <p>Estimated Tax</p>
+                                        <p class="tax"></p>
                                 </div>
+                                <div class="total-container">
+                                        <p>Total</p>
+                                        <p class="total"></p>
+                                </div>
+                                <div class="place-order">Place Order</div>
                         </div>
-                <% }); %>
+                </div>
         </div>
         <div class="footer">
                 <div class="footer-items">
@@ -83,7 +83,5 @@
                         </ul>
                 </div>
         </div>
-        <script>
-        </script>
 </body>
 </html>

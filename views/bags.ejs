@@ -14,11 +14,15 @@
         crossorigin="anonymous"></script>
 </head>
 <body>
-        
         <div class="header">
                 <a href="/"><h1 class="header-title">Ackbee</h1></a>
                 <div class="bag-menu">
-                        <i class="fa-solid fa-bag-shopping"></i>
+                        <div class="cart">
+                                <a href="/cart">
+                                        <i class="fa-solid fa-bag-shopping"></i>
+                                        <span class="cart-size">0</span>
+                                </a>
+                        </div>
                         <i class="fa-solid fa-bars"></i>
                 </div>
                 <div class="search">
@@ -50,6 +54,7 @@
         <div class="catalog">
                 <% data.products.forEach(element => { %>
                         <div class="product">
+                        <a href="product">
                         <div class="product-img">
                                 <img src="images/<%= element.image %>" alt="">
                                 </div>
@@ -62,6 +67,7 @@
                                                 <span class="color2"></span>
                                         </div>
                                 </div>
+                        </a>
                         </div>
                 <% }); %>
         </div>

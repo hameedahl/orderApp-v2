@@ -1,6 +1,8 @@
 * {
         margin: 0;
         padding: 0;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: lighter;
 }
 
 /* ------- START HEAD & FOOT ------- */
@@ -14,6 +16,7 @@
 
 a {
         text-decoration: none;
+        color: inherit;
 }
 
 .header-title {
@@ -36,6 +39,23 @@ a {
 
 .bag-menu i {
         padding: .5rem;
+}
+
+.cart {
+        position: relative;
+}
+
+.cart-size {
+        position: absolute;
+        border-radius: 50%;
+        background-color: #5f5454;
+        width: 1rem;
+        height: 1rem;
+        text-align: center;
+        font-size: .8rem;
+        right: 0;
+        bottom: 0;
+        text-align: center;
 }
 
 .search {
@@ -153,7 +173,7 @@ a {
 
 /* ------- START BAGS ------- */
 
-.catalog-header {
+.catalog-header, .product-contianer {
         padding: 1rem;
         width: inherit;
 }
@@ -185,6 +205,7 @@ a {
 .catalog {
         padding: .5rem;
         width: inherit;
+        color: #000;
 }
 
 .product {
@@ -220,7 +241,7 @@ a {
 
 .colors {
         width: 50%;
-        height: 4vh;
+        height: inherit;
         padding: 10px 0 15px 0;
 }
 
@@ -231,6 +252,10 @@ a {
         border: .5px solid #000;
 }
 
+.colors p {
+        font-size: .9rem;
+}
+
 .color1 {
         background-color: #8C724C;
 }
@@ -239,9 +264,104 @@ a {
         display: inline-block;
 }
 
-
-
-
-
-
 /* ------- END BAGS ------- */
+
+
+/* ------- START PRODUCT PAGE ------- */
+
+.title, .quan{
+        padding-bottom: 1rem;
+}
+
+.title {
+        font-size: 1.2rem;
+
+}
+
+.product-img {
+        margin-bottom: 1rem;
+}
+
+.price-container {
+        border-bottom: .5px solid #000;
+        padding-bottom: 1rem;
+}
+
+.price-container p {
+        font-size: 1.5rem;
+}
+
+.quan label {
+        display: block;
+}
+
+.quan label {
+        margin-bottom: .5rem ;
+}
+
+.product-quantity-selector {
+        position: relative;
+        border: 1px solid #000;
+        width: 5rem;
+        border-radius: 10px;
+        padding: .5rem;
+        font-size: 1.2rem;
+        height: 1.5rem;
+}
+
+.product-quantity-selector input, .product-quantity-selector div {
+        display: inline-block;
+}
+
+.product-quantity-selector p {
+        width: auto;
+}
+
+.quan-select-arrows {
+        position: absolute;
+        right: .5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        height: initial;
+}
+
+#product-quantity {
+        position: absolute;
+        font-size: 1.3rem; 
+        border: none;
+        outline: none;
+        width: 50%;
+        height: inherit;
+}
+
+.quan-select-arrows i {
+        display: block;
+        font-size: 1.3rem; 
+}
+
+.quan-select-arrows i:hover {
+        color: #0000ff;
+
+}
+
+.add-item {
+        background-color: #000;
+        color: #fff;
+        height: 2.5rem;
+        position: relative;
+}
+
+.add-item:hover {
+        background-color: #3a3838;
+}
+
+.add-item p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+
+
+
+/* ------- END PRODUCT PAGE ------- */

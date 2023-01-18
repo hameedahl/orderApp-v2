@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cups Catalog</title>
+        <title>Bags Catalog</title>
         <link rel="stylesheet" href="css/style.css">
         <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -12,11 +12,6 @@
         src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
         integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
         crossorigin="anonymous"></script>
-        <style>
-                .product-price {
-                        padding-bottom: 15px;
-                }
-        </style>
 </head>
 <body>
         <div class="header">
@@ -35,41 +30,37 @@
                         <input type="text" name="search-query" id="search-query" placeholder="Search">
                 </div>
         </div>
-        <div class="catalog-header">
-                <h2>Cups</h2>
-                <div class="filters">
-                        <div class="categories">
-                                <select name="category" id="category">
-                                        <option value="" disabled selected hidden>Shop by Category</option>
-                                        <option value="double">Double Layer</option>
-                                        <option value="single">Single Layer</option>
-                                        <option value="cold">Cold Cups</option>
-
-                                </select>
-                        </div>
-                        <div class="filter-sort">
-                                <select name="sort" id="sort">
-                                        <option value="" disabled selected hidden>Filter and Sort</option>
-                                        <option value="low">Low to High</option>
-                                        <option value="high">High to Low</option>
-                                </select>
-                        </div>
+        <div class="product-contianer">
+        <div class="product-info">
+                <div class="title">
+                        <p class="product-name">#2</p>
+                        <p class="product-details">Paper Bag (500/case)</p>
                 </div>
-                <p class="products-count"><%= data.products.length %></p>
+                <div class="product-img">
+                        <img src="images/cub.PNG" alt="">
+                </div>
+                <div class="price-container">
+                        <p class="product-price">7.00</p>
+                </div>
         </div>
-        <div class="catalog">
-                <% data.products.forEach(element => { %>
-                        <div class="product">
-                        <div class="product-img">
-                                <img src="images/<%= element.image %>" alt="">
-                                </div>
-                                <div class="product-info">
-                                        <p class="product-name"><%= element.product_name %></p>
-                                        <p class="product-details"><%= element.layers %> Layer <%= element.dimensions %> <%= element.per_case %></p>
-                                        <p class="product-price"><%= element.price %></p>
-                                </div>
+        <div class="colors">
+                <span class="color1"></span>
+                <span class="color2"></span>
+                <p class="color-choice">Brown</p>
+        </div>
+        <div class="quan">
+                <label for="">Qty*</label>
+                <div class="product-quantity-selector">
+                        <input type="number" name="product-quantity" id="product-quantity" placeholder="0">
+                        <div class="quan-select-arrows">
+                           <i class="fa-solid fa-angle-up add-quan"></i>
+                           <i class="fa-solid fa-angle-down rm-quan"></i>     
                         </div>
-                <% }); %>
+                </div>   
+        </div>
+        <div class="add-item">
+                <p class="add-to-bag">Add to Bag</p>
+        </div>
         </div>
         <div class="footer">
                 <div class="footer-items">
@@ -83,7 +74,5 @@
                         </ul>
                 </div>
         </div>
-        <script>
-        </script>
 </body>
 </html>

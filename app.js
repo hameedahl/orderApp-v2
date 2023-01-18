@@ -29,6 +29,14 @@ app.get("/cups", async (req, res) => {
         res.render('cups', {data : {products : allproducts, errors: "none"}});
 });
 
+app.get("/product", async (req, res) => {
+        res.render('product');
+});
+
+app.get("/cart", async (req, res) => {
+        res.render('cart');
+});
+
 async function getProducts(categoryQuery) {
         try {
                 await client.connect();
