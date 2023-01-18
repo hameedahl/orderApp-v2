@@ -41,34 +41,45 @@
                         <div class="cart-item-info">
                                 <div class="item-title">
                                         <p class="product-name">Cub</p>
-                                        <p class="product-info">Brown Kraft Twisted Handle Shopping Bag 10”x 5”x 10” (250/case)</p>
+                                        <p class="product-price cart-item-price">45.00</p><br>
+                                        <p class="product-info">Brown Kraft Twisted Handle Shopping Bag 10”x 5”x 10” (250/case)</p><br>
                                         <p class="product-color">White</p>
                                 </div>
-                                <div class="product-price cart-item-price">45.00</div>
-                                <div class="cart-quan-selector"></div>
-                                <div class="edit-cart">
+                                <br>
+                                <div class="cart-quan-selector-container quan">
+                                        <label for="">Qty*</label>
+                                        <div class="product-quantity-selector cart-quan-selector">
+                                                <input type="number" name="product-quantity-cart" id="product-quantity-cart" placeholder="0">
+                                                <div class="quan-select-arrows">
+                                                   <i class="fa-solid fa-angle-up add-quan"></i>
+                                                   <i class="fa-solid fa-angle-down rm-quan"></i>     
+                                                </div>
+                                        </div>   
+                                </div>
+                                <br>
+                                <div class="edit-cart-options">
                                         <p class="edit-cart">Edit</p>
                                         <p class="rm-cart">Remove</p>
                                 </div>
                         </div>
                 </div>
-                <div class="order-summary">
-                        <h4>Order Summary</h4>
-                        <div class="order-totals">
-                                <div class="subtotal-container">
-                                        <p>Subtotal</p>
-                                        <p class="subtotal"></p>
-                                </div>
-                                <div class="tax-container">
-                                        <p>Estimated Tax</p>
-                                        <p class="tax"></p>
-                                </div>
-                                <div class="total-container">
-                                        <p>Total</p>
-                                        <p class="total"></p>
-                                </div>
-                                <div class="place-order">Place Order</div>
+        </div>
+        <div class="order-summary">
+                <h4>Order Summary</h4>
+                <div class="order-totals">
+                        <div class="subtotal-container">
+                                <p>Subtotal</p>
+                                <p class="subtotal"></p>
                         </div>
+                        <div class="tax-container">
+                                <p>Estimated Tax</p>
+                                <p class="tax"></p>
+                        </div>
+                        <div class="total-container">
+                                <p>Total</p>
+                                <p class="total"></p>
+                        </div>
+                        <div class="place-order">Place Order</div>
                 </div>
         </div>
         <div class="footer">
