@@ -234,7 +234,7 @@ a {
         font-weight: bold;
 }
 
-.product-price::before {
+.product-price::before, .subtotal::before, .tax::before, .total::before {
         content: '$';
         position: relative;
 }
@@ -344,18 +344,18 @@ a {
 
 }
 
-.add-item {
+.add-item, .check-out {
         background-color: #000;
         color: #fff;
         height: 2.5rem;
         position: relative;
 }
 
-.add-item:hover {
+.add-item:hover, .check-out:hover {
         background-color: #3a3838;
 }
 
-.add-item p {
+.add-item p, .check-out p {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -371,7 +371,7 @@ a {
         font-size: 1.4rem;
 }
 
-.cart-details {
+.cart-details, .order-summary {
         padding: 1rem;
         width: inherit;
 }
@@ -380,11 +380,11 @@ a {
         border-bottom: .5px solid #000;
         border-top: .5px solid #000;
         position: relative;
+        height: inherit;
 }
 
 .cart-item div {
         display: inline;
-        height: inherit;
 }
 
 .cart-item-info, .cart-item-img {
@@ -397,6 +397,7 @@ a {
 
 .cart-item-info {
         position: absolute;
+        height: 80%;
         padding: 1rem;
 }
 
@@ -426,17 +427,25 @@ a {
 }
 
 .cart-quan-selector-container {
+        position: relative;
         font-size: .8rem;
+        width: inherit;
+        height: initial;
+        margin-top: 1vh;
 }
 
 .cart-quan-selector {
         width: 4rem;
-        height: 200rem;
+        height: 1rem;
+        border: .5px solid #000;
+        position: relative;
+        border-radius: 10px;
+        padding: .5rem;
 }
 
 #product-quantity-cart {
         position: absolute;
-        font-size: 1.2rem; 
+        font-size: 1rem; 
         border: none;
         outline: none;
         width: 50%;
@@ -457,10 +466,55 @@ a {
         padding-left: 1rem;
 }
 
+.edit-cart-options {
+        position: absolute;
+        right: 0;
+        bottom: 1rem;
+}
+.edit-cart-options p {
+        font-size: .8rem;
+}
+
 .cart-item-img img {
         border: .5px solid #000;
         width: 25%;
         margin: 1rem 0rem;
         padding: .5rem;
 }
+
+.order-summary {
+        padding-top: 0;
+}
+
+.order-summary h4 {
+        font-size: 1.4rem;
+        padding-bottom: 2rem;
+}
+
+.order-totals {
+        border: .5px solid #000;
+        padding: 1rem;
+        position: relative;
+
+}
+
+.subtotal-container, .tax-container, .total-container {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: .5rem;
+}
+
+.total-container p {
+        font-weight: bold;
+}
+
+.check-out {
+        margin-top: 2vh;
+}
 /* ------- END CART PAGE ------- */
+
+/* ------- START ORDER DETAILS ------- */
+
+
+/* ------- END ORDER DETAILS ------- */
+
