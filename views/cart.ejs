@@ -20,7 +20,7 @@
                         <div class="cart">
                                 <a href="/cart">
                                         <i class="fa-solid fa-bag-shopping"></i>
-                                        <span class="cart-size">0</span>
+                                        <span class="cart-size"><%= data.cartSize %></span>
                                 </a>
                         </div>
                         <i class="fa-solid fa-bars"></i>
@@ -34,15 +34,17 @@
                 <h4>Shopping Bag</h4>  
         </div>
         <div class="cart-details">
+                <% data.cartItems.forEach(element => { %>
                 <div class="cart-item">
+                        <% product = element.product_obj %>
                         <div class="cart-item-img">
-                                <img src="images/cub.PNG" alt="">
+                                <img src="images<% product.image %>" alt="">
                         </div>
                         <div class="cart-item-info">
                                 <div class="item-title">
                                         <p class="product-name">Cub</p>
                                         <p class="product-price cart-item-price">45.00</p><br>
-                                        <p class="product-info">Brown Kraft Twisted Handle Shopping Bag 10”x 5”x 10” (250/case)</p><br>
+                                        <p class="product-info-cart">Brown Kraft Twisted Handle Shopping Bag 10”x 5”x 10” (250/case)</p><br>
                                         <p class="product-color">White</p>
                                 </div>
                                 <br>
@@ -62,6 +64,7 @@
                                 </div>
                         </div>
                 </div>
+                <% }); %>
         </div>
         <div class="order-summary">
                 <h4>Order Summary</h4>

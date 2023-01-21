@@ -20,7 +20,7 @@
                         <div class="cart">
                                 <a href="/cart">
                                         <i class="fa-solid fa-bag-shopping"></i>
-                                        <span class="cart-size">0</span>
+                                        <span class="cart-size"><%= data.cartSize %></span>
                                 </a>
                         </div>
                         <i class="fa-solid fa-bars"></i>
@@ -51,26 +51,29 @@
                 </div>
                 <p class="products-count"><%= data.products.length %></p>
         </div>
+        <form action="/product" method="post" id="bag-catalog-form">
         <div class="catalog">
                 <% data.products.forEach(element => { %>
                         <div class="product">
-                        <a href="product">
-                        <div class="product-img">
-                                <img src="images/<%= element.image %>" alt="">
+                                <!-- <input type="hidden" name="product-id" id="product-id">
+                                <script>$("#product-id").val(<%= element._id %>)</script> -->
+                                <div class="product-img">
+                                        <img src="images/<%= element.image %>" alt="">
                                 </div>
                                 <div class="product-info">
                                         <p class="product-name"><%= element.product_name %></p>
                                         <p class="product-details">Brown Kraft Twisted Handle Shopping Bag <%= element.dimensions %> <%= element.per_case %></p>
                                         <p class="product-price"><%= element.price %></p>
                                         <div class="colors">
-                                                <span class="color1"></span>
-                                                <span class="color2"></span>
+                                                <span class="brown-color"></span>
+                                                <span class="white-color"></span>
                                         </div>
                                 </div>
-                        </a>
                         </div>
                 <% }); %>
+                <input type="hidden" name="productId" id="productId">
         </div>
+        </form>
         <div class="footer">
                 <div class="footer-items">
                         <ul>
@@ -84,6 +87,11 @@
                 </div>
         </div>
         <script>
+                $(".product").click(function() {
+                        product = $(this).children(".product-info").children(".product-name").text();
+                        $("#productId").val(product);
+                        $("#bag-catalog-form").submit();
+                });
         </script>
 </body>
 </html>

@@ -20,7 +20,8 @@
                         <div class="cart">
                                 <a href="/cart">
                                         <i class="fa-solid fa-bag-shopping"></i>
-                                        <span class="cart-size">0</span>
+                                        <span class="cart-size"><%= data.cartSize %></span>
+                                        <input type="hidden" name="cart-items-count" id="cart-items-count">
                                 </a>
                         </div>
                         <i class="fa-solid fa-bars"></i>
@@ -30,23 +31,27 @@
                         <input type="text" name="search-query" id="search-query" placeholder="Search">
                 </div>
         </div>
+        <form action="/add_to_bag" method="post" id="add_to_bag_form">
         <div class="product-contianer">
         <div class="product-info">
                 <div class="title">
-                        <p class="product-name">#2</p>
-                        <p class="product-details">Paper Bag (500/case)</p>
+                        <% productObj = data.product[0] %>
+                        <p class="product-name"><%= productObj.product_name %></p>
+                        <p class="product-details"><%= productObj.dimensions %> <%= productObj.per_case %></p>
                 </div>
                 <div class="product-img">
-                        <img src="images/cub.PNG" alt="">
+                        <img src="images/<%= productObj.image %>" alt="">
                 </div>
                 <div class="price-container">
-                        <p class="product-price">7.00</p>
+                        <p class="product-price"><%= productObj.price %></p>
                 </div>
         </div>
+        <input type="hidden" name="item_to_add" id="item_to_add">
         <div class="colors">
-                <span class="color1"></span>
-                <span class="color2"></span>
+                <span class="brown-color"></span>
+                <span class="white-color"></span>
                 <p class="color-choice">Brown</p>
+                <input type="hidden" name="bag-color" id="bag-color">
         </div>
         <div class="quan">
                 <label for="">Qty*</label>
@@ -62,6 +67,7 @@
                 <p class="add-to-bag">Add to Bag</p>
         </div>
         </div>
+        </form>
         <div class="footer">
                 <div class="footer-items">
                         <ul>
@@ -74,5 +80,58 @@
                         </ul>
                 </div>
         </div>
+        <script>
+                $("#product-quantity").val(0);
+
+                $(".add-item").click(function () {
+                        newCartCount = parseInt($(".cart-size").text());
+                        $(".cart-items-count").val(newCartCount++);
+                        $(".cart-size").text(newCartCount);
+                        quan = $("#product-quantity").val();
+                        colorChoice = $(".color-choice").text();
+
+                        if (quan != 0) {
+                                productName = $(".product-name").text();
+                                item_to_add = {
+                                        name: productName,
+                                        quantity: quan,
+                                        color: colorChoice
+                                };
+                                /* add item to bag saved on server */
+                                $.ajax({
+                                        url: '/add_to_bag',
+                                        type: 'post',
+                                        dataType: 'json',
+                                        data: item_to_add,
+                                        success: function(serverResponse) {
+                                                console.log(serverResponse);
+                                        }
+                                });
+                        }
+                });
+
+                $(".add-quan").click(function() {
+                       quan = $("#product-quantity").val();
+                       $("#product-quantity").val(++quan);
+                });
+
+                $(".rm-quan").click(function() {
+                        quan = $("#product-quantity").val();
+                        if (quan != 0) {
+                                $("#product-quantity").val(--quan);
+                        }
+                });
+
+                $(".brown-color").click(function () {
+                        $(".color-choice").text("Brown");
+                        $(".bag-color").val("Brown");
+                });
+
+                $(".white-color").click(function () {
+                        $(".color-choice").text("White");
+                        $(".bag-color").val("White");
+                });
+
+        </script>
 </body>
 </html>
