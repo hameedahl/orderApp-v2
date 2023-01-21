@@ -12,6 +12,8 @@
         src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
         integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
         crossorigin="anonymous"></script>
+        <script src="js/cart.js" defer></script>
+
 </head>
 <body>
         <div class="header">
@@ -30,6 +32,93 @@
                         <input type="text" name="search-query" id="search-query" placeholder="Search">
                 </div>
         </div>
+        <form action="/order_complete" method="post">
+        <div class="contact-info">
+                <h4>Contact Information</h4>
+                <select class="favs-select" name="fav-customer" id="fav-customer">
+                        <option value="" disabled selected hidden>Favorites</option>
+                </select>
+                <input type="text" name="fname" id="fname" placeholder="First name">
+                <input type="text" name="lname" id="lname" placeholder="Last name*">
+        </div>
+        <div class="address-info">
+                <h4>Address Information</h4>
+                <input type="text" name="address" id="address" placeholder="Address*">
+                <input type="text" name="city" id="city" placeholder="City">
+                <input type="text" name="state" id="state" placeholder="State">
+                <input type="number" name="zip-code" id="zip-code" placeholder="ZIP Code">
+                <input type="tel" name="phone" id="phone" placeholder="Phone*">
+        </div>
+        <div class="cart-tile">
+                <h4>Shopping Bag</h4>
+        </div>
+        <form action="/order_complete" method="post" id="order_complete">
+        <div class="cart-details">
+                <% data.cartItems.forEach(element => { %>
+                <div class="cart-item">
+                        <% product = element.product_obj[0] %>
+                        <div class="cart-item-img">
+                                <img src="images/<%= product.image %>" alt="">
+                        </div>
+                        <div class="cart-item-info">
+                                <div class="item-title">
+                                        <p class="product-name"><%= product.product_name %></p>
+                                        <p class="product-price cart-item-price"><%= (product.price * element.product_quantity) %></p><br>
+                                        <input type="hidden" name="product-unit-price" class="product-unit-price" id="product-unit-price<%= product._id %>">
+                                        <script>
+                                                $("#product-unit-price<%= product._id %>").val(<%= product.price %>);
+                                        </script>
+                                        <p class="product-info-cart">Brown Kraft Twisted Handle Shopping Bag <%= product.dimensions %> <%= product.per_case %></p><br>
+                                        <p class="product-color"><%= element.product_color %></p>
+                                </div>
+                                <br>
+                                <div class="cart-quan-selector-container quan">
+                                        <label for="">Qty*</label>
+                                        <div class="cart-quan-selector">
+                                                <input type="number" name="product-quantity-cart" class="product-quantity-cart" id="product-quantity-cart<%= product._id %>">
+                                                <script>$("#product-quantity-cart<%= product._id %>").val(<%= element.product_quantity %>)</script>
+                                                <div class="quan-select-arrows">
+                                                   <i class="fa-solid fa-angle-up add-quan"></i>
+                                                   <i class="fa-solid fa-angle-down rm-quan"></i>     
+                                                </div>
+                                        </div>   
+                                </div>
+                        </div>
+                </div>
+                <% }); %>
+        </div>
+        <div class="order-summary">
+                <h4>Order Summary</h4>
+                <div class="order-totals">
+                        <div class="discount-container">
+                                <input type="number" name="discount" id="discount" placeholder="Apply a discount">
+                                <div class="discount-btn"><p>Apply</p></div>
+                        </div>
+                        <div class="subtotal-container">
+                                <p>Subtotal</p>
+                                <input type="hidden" name="subtotal" id="subtotal">
+                                <p class="subtotal"></p>
+                        </div>
+                        <div class="tax-container">
+                                <input type="hidden" name="tax" id="tax">
+                                <p>Estimated Tax</p>
+                                <p class="tax">0</p>
+                        </div>
+                        <div class="discount-amount-container">
+                                <p><i class="fa-solid fa-xmark rm-discount"></i>Discount</p>
+                                <p class="discount-amount"></p>
+                        </div>
+                        <div class="total-container">
+                                <input type="hidden" name="total" id="total">
+                                <p>Total</p>
+                                <p class="total"></p>
+                        </div>
+                </div>
+        </div>
+        <div class="place-order check-out">
+                <p>Place Order</p>
+        </div>
+        </form>
         <div class="footer">
                 <div class="footer-items">
                         <ul>
@@ -43,6 +132,11 @@
                 </div>
         </div>
         <script>
+                $(".discount-amount-container").hide();
+
+                $(".place-order").click(function () {
+                        $("#order_complete").submit();
+                });
 
         </script>
 </body>

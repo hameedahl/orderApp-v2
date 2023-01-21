@@ -47,16 +47,21 @@
                 </div>
         </div>
         <input type="hidden" name="item_to_add" id="item_to_add">
-        <div class="colors">
-                <span class="brown-color"></span>
-                <span class="white-color"></span>
-                <p class="color-choice">Brown</p>
-                <input type="hidden" name="bag-color" id="bag-color">
-        </div>
+        <% if (productObj.category == "Bags") { %>
+                <div class="colors">
+                        <span class="brown-color"></span>
+                        <span class="white-color"></span>
+                        <p class="color-choice">Brown</p>
+                        <input type="hidden" name="bag-color" id="bag-color">
+                </div>
+        <% } %>
         <div class="quan">
                 <label for="">Qty*</label>
                 <div class="product-quantity-selector">
                         <input type="number" name="product-quantity" id="product-quantity" placeholder="0">
+                        <script>
+                                $("#product-quantity").val(1);
+                        </script>
                         <div class="quan-select-arrows">
                            <i class="fa-solid fa-angle-up add-quan"></i>
                            <i class="fa-solid fa-angle-down rm-quan"></i>     
@@ -81,34 +86,31 @@
                 </div>
         </div>
         <script>
-                $("#product-quantity").val(0);
 
                 $(".add-item").click(function () {
-                        
                         quan = $("#product-quantity").val();
                         colorChoice = $(".color-choice").text();
 
-                        if (quan != 0) {
-                                newCartCount = parseInt($(".cart-size").text());
+                        /* adding item to cart */
+                        newCartCount = parseInt($(".cart-size").text());
                         $(".cart-items-count").val(newCartCount++);
                         $(".cart-size").text(newCartCount);
-                                productName = $(".product-name").text();
-                                item_to_add = {
-                                        name: productName,
-                                        quantity: quan,
-                                        color: colorChoice
-                                };
-                                /* add item to bag saved on server */
-                                $.ajax({
-                                        url: '/add_to_bag',
-                                        type: 'post',
-                                        dataType: 'json',
-                                        data: item_to_add,
-                                        success: function(serverResponse) {
-                                                console.log(serverResponse);
-                                        }
-                                });
-                        }
+                        productName = $(".product-name").text();
+                        item_to_add = {
+                                name: productName,
+                                quantity: quan,
+                                color: colorChoice
+                        };
+                        /* add item to bag saved on server */
+                        $.ajax({
+                                url: '/add_to_bag',
+                                type: 'post',
+                                dataType: 'json',
+                                data: item_to_add,
+                                success: function(serverResponse) {
+                                        console.log(serverResponse);
+                                }
+                        });
                 });
 
                 $(".add-quan").click(function() {
@@ -118,7 +120,7 @@
 
                 $(".rm-quan").click(function() {
                         quan = $("#product-quantity").val();
-                        if (quan != 0) {
+                        if (quan != 1) {
                                 $("#product-quantity").val(--quan);
                         }
                 });

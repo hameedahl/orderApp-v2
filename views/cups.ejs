@@ -57,6 +57,7 @@
                 </div>
                 <p class="products-count"><%= data.products.length %></p>
         </div>
+        <form action="/product" method="post" id="cup-catalog-form">
         <div class="catalog">
                 <% data.products.forEach(element => { %>
                         <div class="product">
@@ -70,7 +71,9 @@
                                 </div>
                         </div>
                 <% }); %>
+                <input type="hidden" name="productId" id="cups-product-id">
         </div>
+        </form>
         <div class="footer">
                 <div class="footer-items">
                         <ul>
@@ -84,6 +87,11 @@
                 </div>
         </div>
         <script>
+                $(".product").click(function() {
+                        product = $(this).children(".product-info").children(".product-name").text();
+                        $("#cups-product-id").val(product);
+                        $("#cup-catalog-form").submit();
+                });
         </script>
 </body>
 </html>

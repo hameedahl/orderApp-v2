@@ -92,9 +92,10 @@ a {
 .footer {
         background-color: #000;
         position: relative;
-        width: inherit;
+        width: 100%;
         height: 20vh;
-        bottom: 0;   
+        bottom: 0; 
+        left: 0;
         color: #fff;  
 }
 
@@ -173,7 +174,7 @@ a {
 
 /* ------- START BAGS ------- */
 
-.catalog-header, .product-contianer {
+.catalog-header, .product-contianer, .contact-info, .address-info {
         padding: 1rem;
         width: inherit;
 }
@@ -297,10 +298,8 @@ a {
 
 .quan label {
         display: block;
-}
-
-.quan label {
-        margin-bottom: .5rem ;
+        margin-bottom: .5rem;
+        padding-top: 10px;
 }
 
 .product-quantity-selector {
@@ -355,7 +354,7 @@ a {
         position: relative;
 }
 
-.add-item:hover, .check-out:hover {
+.add-item:hover, .check-out:hover, .discount-btn:hover {
         background-color: #3a3838;
 }
 
@@ -447,7 +446,7 @@ a {
         padding: .5rem;
 }
 
-#product-quantity-cart {
+.product-quantity-cart {
         position: absolute;
         font-size: 1rem; 
         border: none;
@@ -502,7 +501,7 @@ a {
 
 }
 
-.subtotal-container, .tax-container, .total-container {
+.subtotal-container, .tax-container, .total-container, .discount-amount-container {
         display: flex;
         justify-content: space-between;
         padding-bottom: .5rem;
@@ -515,10 +514,98 @@ a {
 .check-out {
         margin-top: 2vh;
 }
+
+.empty-cart {
+        font-size: 1rem;
+        position: absolute;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 2vh;
+        margin-left: 2vh;
+        display: none;
+}
+
+.discount-container {
+        border: .5px solid #000;
+        color: #fff;
+        height: 2rem;
+        position: relative;
+        margin-bottom: 1vh;
+        display: flex;
+        justify-content: space-between;
+        width: inherit;
+}
+
+#discount {
+        border: none;
+        outline: none;
+        padding: 10px;
+        width: 100%;
+        font-size: 1rem;
+}
+
+.discount-btn {
+        background-color: black;
+        width: 100px;
+        text-align: center;
+        height: inherit;
+        position: relative;
+}
+
+.discount-btn p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+}
+
+.discount-amount-container {
+        color: #ff0000;
+}
+
+.discount-amount::before {
+        content: '-$';
+        position: relative;
+}
+
+.rm-discount {
+        margin-right: 2vw;
+}
+
+.rm-discount:hover {
+        color: #cb0404;
+}
+
 /* ------- END CART PAGE ------- */
 
-/* ------- START ORDER DETAILS ------- */
+/* ------- START ORDER FORM ------- */
 
+.contact-info h4, .address-info h4 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5vh;
+        border-bottom: .5px solid #000;
+}
 
-/* ------- END ORDER DETAILS ------- */
+.contact-info input, .contact-info select, .address-info input {
+        display: block;
+        outline: none;
+        border: .5px solid #000;
+        padding: .5rem;
+        width: 95%;
+        font-size: 1rem;
+        margin-bottom: 1.5vh;
+}
+
+.contact-info input:last-child {
+        margin-bottom: 0;
+}
+
+.contact-info select {
+        width: 100%;
+}
+
+.place-order {
+        margin: 1rem;
+}
+/* ------- END ORDER FORM ------- */
 

@@ -59,10 +59,19 @@ app.post("/add_to_bag", async (req, res) => {
 });
 
 app.get("/cart", async (req, res) => {
-        console.log(cart);
         res.render('cart', {data: {cartItems: cart, errors: "none", cartSize: cartSize}});
-
 });
+
+app.post("/order_form", async (req, res) => {
+        res.render('order_form', {data: {cartItems: cart, errors: "none", cartSize: cartSize}});
+});
+
+app.post("/order_complete", async (req, res) => {
+        res.render('order_complete', {data: {cartItems: cart, errors: "none", cartSize: cartSize}});
+});
+
+
+
 
 async function getProducts(categoryQuery) {
         try {

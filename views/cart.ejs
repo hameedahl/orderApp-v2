@@ -12,6 +12,7 @@
         src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
         integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
         crossorigin="anonymous"></script>
+        <script src="js/cart.js" defer></script>
 </head>
 <body>
         <div class="header">
@@ -31,8 +32,10 @@
                 </div>
         </div>
         <div class="cart-tile">
-                <h4>Shopping Bag</h4>  
+                <h4>Shopping Bag</h4> 
+                <p class="empty-cart">There are currently no items in your cart.</p>
         </div>
+        <form action="/order_form" method="post" id="order-form">
         <div class="cart-details">
                 <% data.cartItems.forEach(element => { %>
                 <div class="cart-item">
@@ -43,7 +46,11 @@
                         <div class="cart-item-info">
                                 <div class="item-title">
                                         <p class="product-name"><%= product.product_name %></p>
-                                        <p class="product-price cart-item-price"><%= product.price %></p><br>
+                                        <p class="product-price cart-item-price"><%= (product.price * element.product_quantity) %></p><br>
+                                        <input type="hidden" name="product-unit-price" class="product-unit-price" id="product-unit-price<%= product._id %>">
+                                        <script>
+                                                $("#product-unit-price<%= product._id %>").val(<%= product.price %>);
+                                        </script>
                                         <p class="product-info-cart">Brown Kraft Twisted Handle Shopping Bag <%= product.dimensions %> <%= product.per_case %></p><br>
                                         <p class="product-color"><%= element.product_color %></p>
                                 </div>
@@ -51,8 +58,8 @@
                                 <div class="cart-quan-selector-container quan">
                                         <label for="">Qty*</label>
                                         <div class="cart-quan-selector">
-                                                <input type="number" name="product-quantity-cart" id="product-quantity-cart" placeholder="0">
-                                                <script>$("#product-quantity-cart").val(<%= element.product_quantity %>)</script>
+                                                <input type="number" name="product-quantity-cart" class="product-quantity-cart" id="product-quantity-cart<%= product._id %>">
+                                                <script>$("#product-quantity-cart<%= product._id %>").val(<%= element.product_quantity %>)</script>
                                                 <div class="quan-select-arrows">
                                                    <i class="fa-solid fa-angle-up add-quan"></i>
                                                    <i class="fa-solid fa-angle-down rm-quan"></i>     
@@ -67,23 +74,36 @@
                 </div>
                 <% }); %>
         </div>
+        </form>
         <div class="order-summary">
                 <h4>Order Summary</h4>
                 <div class="order-totals">
+                        <div class="discount-container">
+                                <input type="number" name="discount" id="discount" placeholder="Apply a discount">
+                                <div class="discount-btn"><p>Apply</p></div>
+                        </div>
                         <div class="subtotal-container">
                                 <p>Subtotal</p>
+                                <input type="hidden" name="subtotal" id="subtotal">
                                 <p class="subtotal"></p>
                         </div>
                         <div class="tax-container">
+                                <input type="hidden" name="tax" id="tax">
                                 <p>Estimated Tax</p>
-                                <p class="tax"></p>
+                                <p class="tax">0</p>
+                        </div>
+                        <div class="discount-amount-container">
+                                <p><i class="fa-solid fa-xmark rm-discount"></i>Discount</p>
+                                <p class="discount-amount"></p>
+                                <script>$(".discount-amount-container").hide(); </script>
                         </div>
                         <div class="total-container">
+                                <input type="hidden" name="total" id="total">
                                 <p>Total</p>
                                 <p class="total"></p>
                         </div>
                         <div class="check-out">
-                                <p>Check Out</p>
+                                <p class="submit-btn">Check Out</p>
                         </div>
                 </div>
         </div>
@@ -99,5 +119,8 @@
                         </ul>
                 </div>
         </div>
+        <script>
+               
+        </script>
 </body>
 </html>

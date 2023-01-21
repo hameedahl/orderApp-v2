@@ -55,8 +55,6 @@
         <div class="catalog">
                 <% data.products.forEach(element => { %>
                         <div class="product">
-                                <!-- <input type="hidden" name="product-id" id="product-id">
-                                <script>$("#product-id").val(<%= element._id %>)</script> -->
                                 <div class="product-img">
                                         <img src="images/<%= element.image %>" alt="">
                                 </div>
@@ -71,7 +69,7 @@
                                 </div>
                         </div>
                 <% }); %>
-                <input type="hidden" name="productId" id="productId">
+                <input type="hidden" name="productId" id="bags-product-id">
         </div>
         </form>
         <div class="footer">
@@ -89,7 +87,7 @@
         <script>
                 $(".product").click(function() {
                         product = $(this).children(".product-info").children(".product-name").text();
-                        $("#productId").val(product);
+                        $("#bags-product-id").val(product);
                         $("#bag-catalog-form").submit();
                 });
         </script>
