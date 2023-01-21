@@ -84,13 +84,14 @@
                 $("#product-quantity").val(0);
 
                 $(".add-item").click(function () {
-                        newCartCount = parseInt($(".cart-size").text());
-                        $(".cart-items-count").val(newCartCount++);
-                        $(".cart-size").text(newCartCount);
+                        
                         quan = $("#product-quantity").val();
                         colorChoice = $(".color-choice").text();
 
                         if (quan != 0) {
+                                newCartCount = parseInt($(".cart-size").text());
+                        $(".cart-items-count").val(newCartCount++);
+                        $(".cart-size").text(newCartCount);
                                 productName = $(".product-name").text();
                                 item_to_add = {
                                         name: productName,

@@ -36,22 +36,23 @@
         <div class="cart-details">
                 <% data.cartItems.forEach(element => { %>
                 <div class="cart-item">
-                        <% product = element.product_obj %>
+                        <% product = element.product_obj[0] %>
                         <div class="cart-item-img">
-                                <img src="images<% product.image %>" alt="">
+                                <img src="images/<%= product.image %>" alt="">
                         </div>
                         <div class="cart-item-info">
                                 <div class="item-title">
-                                        <p class="product-name">Cub</p>
-                                        <p class="product-price cart-item-price">45.00</p><br>
-                                        <p class="product-info-cart">Brown Kraft Twisted Handle Shopping Bag 10”x 5”x 10” (250/case)</p><br>
-                                        <p class="product-color">White</p>
+                                        <p class="product-name"><%= product.product_name %></p>
+                                        <p class="product-price cart-item-price"><%= product.price %></p><br>
+                                        <p class="product-info-cart">Brown Kraft Twisted Handle Shopping Bag <%= product.dimensions %> <%= product.per_case %></p><br>
+                                        <p class="product-color"><%= element.product_color %></p>
                                 </div>
                                 <br>
                                 <div class="cart-quan-selector-container quan">
                                         <label for="">Qty*</label>
                                         <div class="cart-quan-selector">
                                                 <input type="number" name="product-quantity-cart" id="product-quantity-cart" placeholder="0">
+                                                <script>$("#product-quantity-cart").val(<%= element.product_quantity %>)</script>
                                                 <div class="quan-select-arrows">
                                                    <i class="fa-solid fa-angle-up add-quan"></i>
                                                    <i class="fa-solid fa-angle-down rm-quan"></i>     

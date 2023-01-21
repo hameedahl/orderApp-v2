@@ -48,8 +48,9 @@ app.post("/add_to_bag", async (req, res) => {
         item_name = req.body.name;
         item_quan = req.body.quantity;
         item_color = req.body.color;
+        obj = await productQuery(item_name);
         cart_item = {
-                product_obj: await productQuery(item_name),
+                product_obj: obj,
                 product_quantity: item_quan,
                 product_color: item_color
         }
@@ -58,8 +59,9 @@ app.post("/add_to_bag", async (req, res) => {
 });
 
 app.get("/cart", async (req, res) => {
-        //console.log(cart);
-        res.render('cart', {data: {cartItems: cart, cartSize: cartSize}});
+        console.log(cart);
+        res.render('cart', {data: {cartItems: cart, errors: "none", cartSize: cartSize}});
+
 });
 
 async function getProducts(categoryQuery) {
