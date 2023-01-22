@@ -12,6 +12,8 @@
         src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
         integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
         crossorigin="anonymous"></script>
+        <script src="js/menu.js" defer></script>
+        <script src="js/search.js" defer></script>
 </head>
 <body>
         <div class="header">
@@ -23,12 +25,92 @@
                                         <span class="cart-size">0</span>
                                 </a>
                         </div>
-                        <i class="fa-solid fa-bars"></i>
+                        <i class="fa-solid fa-bars" onclick="showMenu()"></i>
                 </div>
                 <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" name="search-query" id="search-query" placeholder="Search">
                 </div>
+        </div>
+        <div class="order-complete-title">
+                <h4>Order Completed</h4>
+        </div>
+        <div class="cart-details">
+                <% data.cartItems.forEach(element => { %>
+                <div class="cart-item">
+                        <% product = element.product_obj[0] %>
+                        <div class="cart-item-img">
+                                <img src="images/<%= product.image %>" alt="">
+                        </div>
+                        <div class="cart-item-info">
+                                <div class="item-title ordered-item-title">
+                                        <p class="product-name"><%= product.product_name %></p>
+                                        <p class="product-price cart-item-price"><%= (product.price * element.product_quantity) %></p><br>
+                                        <input type="hidden" name="product-unit-price" class="product-unit-price" id="product-unit-price<%= product._id %>">
+                                        <script>
+                                                $("#product-unit-price<%= product._id %>").val(<%= product.price %>);
+                                        </script>
+                                        <p class="product-info-cart">Brown Kraft Twisted Handle Shopping Bag <%= product.dimensions %> <%= product.per_case %></p><br>
+                                        <p class="product-color"><%= element.product_color %></p>
+                                </div>
+                                <br>
+                        </div>
+                </div>
+                <% }); %>
+        </div>
+        <div class="contact-summary">
+                <h4>Contact Information</h4>
+                <div class="contact-info-sum">
+                        <p class="name"><%= data.contact.lname %> </p>
+                        <p class="address"><%= data.contact.address %> </p>
+                        <p class="address"><%= data.contact.city %> <%= data.contact.state %>  <%= data.contact.zip %></p>
+                        <p class="phone"><%= data.contact.phone %></p>
+                </div>
+        </div>
+        <div class="order-summary order-complete-summary">
+                <h4>Summary</h4>
+                <div class="order-totals">
+                        <div class="subtotal-container">
+                                <p>Subtotal</p>
+                                <input type="hidden" name="subtotal" id="subtotal">
+                                <p class="subtotal"></p>
+                        </div>
+                        <div class="tax-container">
+                                <input type="hidden" name="tax" id="tax">
+                                <p>Estimated Tax</p>
+                                <p class="tax">0</p>
+                        </div>
+                        <div class="discount-amount-container">
+                                <p></i>Discount</p>
+                                <p class="discount-amount"></p>
+                        </div>
+                        <div class="total-container">
+                                <input type="hidden" name="total" id="total">
+                                <p>Total</p>
+                                <p class="total"></p>
+                        </div>
+                        <script>
+                                $(".subtotal").text(<%= data.totals.subtotal %>); 
+                                $(".total").text(<%= data.totals.total %>);                               
+                        </script>
+                        <% if (data.totals.discount_added) { %> 
+                                <script>
+                                        $(".discount-amount-container").show();
+                                        $(".discount-amount").text(<%= data.totals.discount %>);                               
+                                </script>
+                        <% } %>
+                </div>
+        </div>
+        <a href="/"><div class="back_btn check-out place-order">
+                <p>Back to Catalogs</p>
+        </div></a>
+        <div class="menu_container" style="display: none;">
+                <i class="fa-solid fa-xmark close_menu" onclick="hideMenu()"></i>
+                <ul class="menu_items">
+                        <li><a href="/">Home</a></li> 
+                        <li><a href="/bags">Bag Catalog</a></li>  
+                        <li><a href="/cups">Cup Catalog</a></li>  
+                </ul>
         </div>
         <div class="footer">
                 <div class="footer-items">
@@ -43,6 +125,7 @@
                 </div>
         </div>
         <script>
+                $(".discount-amount-container").hide();
 
         </script>
 </body>

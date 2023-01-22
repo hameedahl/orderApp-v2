@@ -14,10 +14,25 @@ $(".rm-quan").click(function() {
 
 $(".rm-cart").click(function () {
         $(this).parents(".cart-item").remove();
+        name_to_rm = $(this).parents(".cart-item").children(".product-name").text();
         updateTotal();
+        item_name_to_rm = {
+                name: name_to_rm
+        };
         /* update bag */
         cartSize = $(".cart-size").text();
         $(".cart-size").text(--cartSize); //
+        /* remove item from bag saved on server */
+        $.ajax({
+                url: '/rm_from_bag',
+                type: 'post',
+                dataType: 'json',
+                data: item_name_to_rm,
+                success: function(serverResponse) {
+                        console.log(serverResponse);
+                }
+                /* check for added the same this more than once */
+        });
         emptyBag();
 });
 
@@ -71,8 +86,13 @@ function updateTotal() {
         }
 
         $(".subtotal").text(total);
+        $("#subtotal-amount").val(total);
+
+        $(".tax").text();
+        $("#tax-amount").val();
+
         $(".total").text(total);
-        
+        $("#total-amount").val(total);
 }
 
 function emptyBag() {

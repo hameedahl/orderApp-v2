@@ -89,6 +89,44 @@ a {
         transform: translateY(-50%);
 }
 
+.menu_container {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: clamp(11rem, 20vw, 29rem); 
+        height: 100%; 
+        background-color: #000;
+}
+
+.menu_items a {
+        color: #fff;
+}
+
+.menu_items {
+        list-style: none;
+        font-size: 1.5rem;
+        margin: clamp(1rem, 9vw, 10rem); 
+        margin-top: clamp(1rem, 18vw, 20rem); 
+}
+
+.menu_items li {
+        list-style: none;
+        padding-bottom: 2vh;
+        width: 35vw;
+}
+
+.menu_items li:hover {
+        cursor: pointer;
+}
+
+.close_menu {
+        color: #fff;
+        position: absolute;
+        font-size: 1.5rem;
+        z-index: 5;
+        margin: min(3vw, 80px);
+}
+
 .footer {
         background-color: #000;
         position: relative;
@@ -365,6 +403,10 @@ a {
         transform: translate(-50%, -50%);
 }
 
+.item-added {
+        margin-left: 10px;
+}
+
 /* ------- END PRODUCT PAGE ------- */
 
 /* ------- START CART PAGE ------- */
@@ -374,7 +416,7 @@ a {
         font-size: 1.4rem;
 }
 
-.cart-details, .order-summary {
+.cart-details, .order-summary, .order-complete-title, .contact-summary {
         padding: 1rem;
         width: inherit;
 }
@@ -494,7 +536,7 @@ a {
         padding-bottom: 2rem;
 }
 
-.order-totals {
+.order-totals, .contact-info-sum {
         border: .5px solid #000;
         padding: 1rem;
         position: relative;
@@ -609,3 +651,25 @@ a {
 }
 /* ------- END ORDER FORM ------- */
 
+/* ------- START ORDER COMPLETE ------- */
+
+.order-complete-title h4, .order-complete-summary h4, .contact-summary h4 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+}
+
+.order-complete-title {
+        padding-bottom: 0;
+        margin-bottom: 0;
+}
+
+.order-complete-summary h4, .contact-summary h4 {
+        padding-bottom: 1rem;
+}
+
+.ordered-item-title p {
+        font-size: 1rem;
+
+}
+/* ------- END ORDER COMPLETE ------- */

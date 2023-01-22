@@ -13,6 +13,8 @@
         integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
         crossorigin="anonymous"></script>
         <script src="js/cart.js" defer></script>
+        <script src="js/menu.js" defer></script>
+        <script src="js/search.js" defer></script>
 
 </head>
 <body>
@@ -22,10 +24,10 @@
                         <div class="cart">
                                 <a href="/cart">
                                         <i class="fa-solid fa-bag-shopping"></i>
-                                        <span class="cart-size">0</span>
+                                        <span class="cart-size"><%= data.cartSize %> </span>
                                 </a>
                         </div>
-                        <i class="fa-solid fa-bars"></i>
+                        <i class="fa-solid fa-bars" onclick="showMenu()"></i>
                 </div>
                 <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -37,6 +39,9 @@
                 <h4>Contact Information</h4>
                 <select class="favs-select" name="fav-customer" id="fav-customer">
                         <option value="" disabled selected hidden>Favorites</option>
+                        <% data.favs.forEach(element => { %>
+                                <option value="<%= element.name %>"><%= element.name %></option>
+                        <% }); %>
                 </select>
                 <input type="text" name="fname" id="fname" placeholder="First name">
                 <input type="text" name="lname" id="lname" placeholder="Last name*">
@@ -46,13 +51,13 @@
                 <input type="text" name="address" id="address" placeholder="Address*">
                 <input type="text" name="city" id="city" placeholder="City">
                 <input type="text" name="state" id="state" placeholder="State">
-                <input type="number" name="zip-code" id="zip-code" placeholder="ZIP Code">
+                <input type="number" name="zip" id="zip-code" placeholder="ZIP Code">
                 <input type="tel" name="phone" id="phone" placeholder="Phone*">
         </div>
         <div class="cart-tile">
                 <h4>Shopping Bag</h4>
         </div>
-        <form action="/order_complete" method="post" id="order_complete">
+        <form action="/order_complete" method="post" id="order-complete-form">
         <div class="cart-details">
                 <% data.cartItems.forEach(element => { %>
                 <div class="cart-item">
@@ -113,12 +118,27 @@
                                 <p>Total</p>
                                 <p class="total"></p>
                         </div>
+                        <% if (data.totals.discount_added) { %> 
+                                <script>
+                                        $(".discount-amount-container").show();
+                                        $("#discount").val(<%= data.totals.discount %>);
+                                        $(".discount-amount").text(<%= data.totals.discount %>);                               
+                                </script>
+                        <% } %>
                 </div>
         </div>
         <div class="place-order check-out">
                 <p>Place Order</p>
         </div>
         </form>
+        <div class="menu_container" style="display: none;">
+                <i class="fa-solid fa-xmark close_menu" onclick="hideMenu()"></i>
+                <ul class="menu_items">
+                        <li><a href="/">Home</a></li> 
+                        <li><a href="/bags">Bag Catalog</a></li>  
+                        <li><a href="/cups">Cup Catalog</a></li>  
+                </ul>
+        </div>
         <div class="footer">
                 <div class="footer-items">
                         <ul>
@@ -133,11 +153,9 @@
         </div>
         <script>
                 $(".discount-amount-container").hide();
-
                 $(".place-order").click(function () {
-                        $("#order_complete").submit();
+                        $("form").submit();
                 });
-
         </script>
 </body>
 </html>

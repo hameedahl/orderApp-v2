@@ -6,12 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bags Catalog</title>
         <link rel="stylesheet" href="css/style.css">
-        <script src="https://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
+        <script src="ht tps://kit.fontawesome.com/55d0223fcd.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script
         src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
         integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
         crossorigin="anonymous"></script>
+        <script src="js/menu.js" defer></script>
+        <script src="js/search.js" defer></script>
 </head>
 <body>
         <div class="header">
@@ -24,7 +26,7 @@
                                         <input type="hidden" name="cart-items-count" id="cart-items-count">
                                 </a>
                         </div>
-                        <i class="fa-solid fa-bars"></i>
+                        <i class="fa-solid fa-bars" onclick="showMenu()"></i>
                 </div>
                 <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -69,10 +71,18 @@
                 </div>   
         </div>
         <div class="add-item">
-                <p class="add-to-bag">Add to Bag</p>
+                <p class="add-to-bag">Add to Bag<i class="fa-solid fa-check item-added" style="display: none;"></i></p>
         </div>
         </div>
         </form>
+        <div class="menu_container" style="display: none;">
+                <i class="fa-solid fa-xmark close_menu" onclick="hideMenu()"></i>
+                <ul class="menu_items">
+                        <li><a href="/">Home</a></li> 
+                        <li><a href="/bags">Bag Catalog</a></li>  
+                        <li><a href="/cups">Cup Catalog</a></li>  
+                </ul>
+        </div>
         <div class="footer">
                 <div class="footer-items">
                         <ul>
@@ -110,7 +120,11 @@
                                 success: function(serverResponse) {
                                         console.log(serverResponse);
                                 }
+                                /* check for added the same this more than once */
                         });
+
+                        topFunction(); /* go back to top */
+                        $(".item-added").css("display", "inline");
                 });
 
                 $(".add-quan").click(function() {
@@ -134,6 +148,11 @@
                         $(".color-choice").text("White");
                         $(".bag-color").val("White");
                 });
+
+
+                function topFunction() {
+                        window.scrollTo({top: 0, behavior: 'smooth'});
+                }
 
         </script>
 </body>

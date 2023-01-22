@@ -12,6 +12,9 @@
         src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
         integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
         crossorigin="anonymous"></script>
+        <script src="js/menu.js" defer></script>
+        <script src="js/search.js" defer></script>
+
 </head>
 <body>
         <div class="header">
@@ -23,7 +26,7 @@
                                         <span class="cart-size"><%= data.cartSize %></span>
                                 </a>
                         </div>
-                        <i class="fa-solid fa-bars"></i>
+                        <i class="fa-solid fa-bars" onclick="showMenu()"></i>
                 </div>
                 <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -45,9 +48,16 @@
                                 <h2>Cups</h2>
                                 <i class="fa-solid fa-arrow-right"></i>
                         </div>
-                        
                 </div>
         </a>
+        <div class="menu_container" style="display: none;">
+                <i class="fa-solid fa-xmark close_menu" onclick="hideMenu()"></i>
+                <ul class="menu_items">
+                        <li><a href="/">Home</a></li> 
+                        <li><a href="/bags">Bag Catalog</a></li>  
+                        <li><a href="/cups">Cup Catalog</a></li>  
+                </ul>
+        </div>
         <div class="footer">
                 <div class="footer-items">
                         <ul>

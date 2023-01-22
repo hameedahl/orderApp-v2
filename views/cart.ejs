@@ -13,6 +13,8 @@
         integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
         crossorigin="anonymous"></script>
         <script src="js/cart.js" defer></script>
+        <script src="js/menu.js" defer></script>
+        <script src="js/search.js" defer></script>
 </head>
 <body>
         <div class="header">
@@ -24,7 +26,7 @@
                                         <span class="cart-size"><%= data.cartSize %></span>
                                 </a>
                         </div>
-                        <i class="fa-solid fa-bars"></i>
+                        <i class="fa-solid fa-bars" onclick="showMenu()"></i>
                 </div>
                 <div class="search">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -47,7 +49,7 @@
                                 <div class="item-title">
                                         <p class="product-name"><%= product.product_name %></p>
                                         <p class="product-price cart-item-price"><%= (product.price * element.product_quantity) %></p><br>
-                                        <input type="hidden" name="product-unit-price" class="product-unit-price" id="product-unit-price<%= product._id %>">
+                                        <input type="hidden" name="product_unit_price" class="product-unit-price" id="product-unit-price<%= product._id %>">
                                         <script>
                                                 $("#product-unit-price<%= product._id %>").val(<%= product.price %>);
                                         </script>
@@ -58,7 +60,7 @@
                                 <div class="cart-quan-selector-container quan">
                                         <label for="">Qty*</label>
                                         <div class="cart-quan-selector">
-                                                <input type="number" name="product-quantity-cart" class="product-quantity-cart" id="product-quantity-cart<%= product._id %>">
+                                                <input type="number" name="product_quantity_cart" class="product-quantity-cart" id="product-quantity-cart<%= product._id %>">
                                                 <script>$("#product-quantity-cart<%= product._id %>").val(<%= element.product_quantity %>)</script>
                                                 <div class="quan-select-arrows">
                                                    <i class="fa-solid fa-angle-up add-quan"></i>
@@ -74,7 +76,6 @@
                 </div>
                 <% }); %>
         </div>
-        </form>
         <div class="order-summary">
                 <h4>Order Summary</h4>
                 <div class="order-totals">
@@ -84,11 +85,11 @@
                         </div>
                         <div class="subtotal-container">
                                 <p>Subtotal</p>
-                                <input type="hidden" name="subtotal" id="subtotal">
+                                <input type="hidden" name="subtotalAmount" id="subtotal-amount">
                                 <p class="subtotal"></p>
                         </div>
                         <div class="tax-container">
-                                <input type="hidden" name="tax" id="tax">
+                                <input type="hidden" name="taxAmount" id="tax-amount">
                                 <p>Estimated Tax</p>
                                 <p class="tax">0</p>
                         </div>
@@ -98,7 +99,7 @@
                                 <script>$(".discount-amount-container").hide(); </script>
                         </div>
                         <div class="total-container">
-                                <input type="hidden" name="total" id="total">
+                                <input type="hidden" name="totalAmount" id="total-amount">
                                 <p>Total</p>
                                 <p class="total"></p>
                         </div>
@@ -106,6 +107,15 @@
                                 <p class="submit-btn">Check Out</p>
                         </div>
                 </div>
+        </div>
+        </form>
+        <div class="menu_container" style="display: none;">
+                <i class="fa-solid fa-xmark close_menu" onclick="hideMenu()"></i>
+                <ul class="menu_items">
+                        <li><a href="/">Home</a></li> 
+                        <li><a href="/bags">Bag Catalog</a></li>  
+                        <li><a href="/cups">Cup Catalog</a></li>  
+                </ul>
         </div>
         <div class="footer">
                 <div class="footer-items">
