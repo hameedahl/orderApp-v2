@@ -145,7 +145,6 @@ a {
         width: 80vw;
         height: inherit;
         text-align: center;
-
 }
 
 .footer li {
@@ -275,6 +274,11 @@ a {
 
 .product-price::before, .subtotal::before, .tax::before, .total::before {
         content: '$';
+        position: relative;
+}
+
+.product-price::after, .subtotal::after, .tax::after, .total::after {
+        content: '.00';
         position: relative;
 }
 
@@ -648,6 +652,10 @@ a {
 
 .place-order {
         margin: 1rem;
+}
+
+.error-msg {
+        color: #b80505;
 }
 /* ------- END ORDER FORM ------- */
 

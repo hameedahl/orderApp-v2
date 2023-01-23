@@ -3,6 +3,7 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const {check, validationResult } = require('express-validator');
+const e = require('express');
 
 
 var connectUrl = "mongodb+srv://hlawal:11520220@cluster0.umcmxng.mongodb.net/?retryWrites=true&w=majority";
@@ -100,7 +101,7 @@ app.post("/order_form", async (req, res) => {
         }
         
         await getFavs();
-        res.render('order_form', {data: {cartItems: cart, errors: "none", cartSize: cartSize, favs: favorites, totals: total_amounts}});
+        res.render('order_form', {data: {cartItems: cart, errors: "none", cartSize: cartSize, favs: favorites, totals: total_amounts, contact: "none"}});
 });
 
 async function getFavs() {
@@ -109,7 +110,13 @@ async function getFavs() {
         favorites = await favorites.toArray();
 }
 
-app.post("/order_complete", async (req, res) => {
+app.post("/order_complete",
+        check('lname').notEmpty().withMessage("Please enter a last name"),
+        check('address').notEmpty().withMessage("Please enter an address"),
+        check('phone').notEmpty().withMessage("Please enter a phone number"),
+        async (req, res) => {
+        const errors = validationResult(req);
+
         contact_info = {
                 fname: req.body.fname,
                 lname: req.body.lname,
@@ -120,9 +127,23 @@ app.post("/order_complete", async (req, res) => {
                 phone: req.body.phone
         }
 
-        await addToDatabase(contact_info);
-        res.render('order_complete', {data: {cartItems: cart, errors: "none", cartSize: cartSize, totals: total_amounts, contact: contact_info}});
+        if (errors.isEmpty()) {
+                await addToDatabase(contact_info);
+                res.render('order_complete', {data: {cartItems: cart, errors: "none", cartSize: cartSize, totals: total_amounts, contact: contact_info}});
+        } else {
+                /* stay on page and display errors */
+                res.render('order_form', {data: {cartItems: cart, errors: errors.array(), cartSize: cartSize, favs: favorites, totals: total_amounts, contact: contact_info}});
+        }
 });
+
+/* filters */
+
+app.post("/filter", async (req, res) => {
+        filter = req.body.filter;
+        {$and: [{category: "Cups"},{layers: "Single"}]}
+        // how can we just change array without reloading whole page
+});
+
 
 async function addToDatabase(contact) {
         var collection = await database.collection("orders");
@@ -160,14 +181,12 @@ async function productQuery(productName) {
 
 //// close connnection for db
 
-// validation
 
 // filter functionality
-// re write db
 
 // search "
+// favorites
 // added dups
-
 
 
 

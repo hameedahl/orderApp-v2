@@ -18,7 +18,6 @@
 
 </head>
 <body>
-        <script>$(".discount-amount-container").hide();</script>
         <div class="header">
                 <a href="/"><h1 class="header-title">Ackbee</h1></a>
                 <div class="bag-menu">
@@ -54,6 +53,21 @@
                 <input type="text" name="state" id="state" placeholder="State">
                 <input type="number" name="zip" id="zip-code" placeholder="ZIP Code">
                 <input type="tel" name="phone" id="phone" placeholder="Phone*">
+                <% if (data.errors != "none") { %>
+                        <p class="error-msg"><%= data.errors[0].msg %></p>
+                <% } %>
+                <% if (data.contact != "none") { %>
+                        <!-- refill form if errors were found -->
+                        <script>
+                                $("#fname").val("<%= data.contact.fname %>");
+                                $("#lname").val("<%= data.contact.lname %>");
+                                $("#address").val("<%= data.contact.address %>");
+                                $("#city").val("<%= data.contact.city %>");
+                                $("#state").val("<%= data.contact.state %>");
+                                $("#zip-code").val("<%= data.contact.zip %>");
+                                $("#phone").val("<%= data.contact.phone %>");
+                        </script>
+                <% } %>
         </div>
         <div class="cart-tile">
                 <h4>Shopping Bag</h4>
@@ -119,6 +133,7 @@
                                 <p>Total</p>
                                 <p class="total"></p>
                         </div>
+                        <script>$(".discount-amount-container").hide();</script>
                         <% if (data.totals.discount_added) { %> 
                                 <script>
                                         $(".discount-amount-container").show();
