@@ -16,6 +16,7 @@
         <script src="js/search.js" defer></script>
 </head>
 <body>
+        <script>$(".discount-amount-container").hide();</script>
         <div class="header">
                 <a href="/"><h1 class="header-title">Ackbee</h1></a>
                 <div class="bag-menu">
@@ -61,7 +62,7 @@
         <div class="contact-summary">
                 <h4>Contact Information</h4>
                 <div class="contact-info-sum">
-                        <p class="name"><%= data.contact.lname %> </p>
+                        <p class="name"><%= data.contact.fname %>  <%= data.contact.lname %></p>
                         <p class="address"><%= data.contact.address %> </p>
                         <p class="address"><%= data.contact.city %> <%= data.contact.state %>  <%= data.contact.zip %></p>
                         <p class="phone"><%= data.contact.phone %></p>
@@ -124,9 +125,5 @@
                         </ul>
                 </div>
         </div>
-        <script>
-                $(".discount-amount-container").hide();
-
-        </script>
 </body>
 </html>

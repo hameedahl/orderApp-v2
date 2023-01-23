@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
+const {check, validationResult } = require('express-validator');
 
 
 var connectUrl = "mongodb+srv://hlawal:11520220@cluster0.umcmxng.mongodb.net/?retryWrites=true&w=majority";
@@ -60,17 +61,17 @@ app.post("/add_to_bag", async (req, res) => {
 });
 
 app.post("/rm_from_bag", async (req, res) => {
-        item_name_test = req.body.iName;
-        // item_quan = req.body.quantity;
-        // item_color = req.body.color;
-        // obj = await productQuery(item_name);
-        // cart_item = {
-        //         product_obj: obj,
-        //         product_quantity: item_quan,
-        //         product_color: item_color
-        // }
-        // cart.push(cart_item);
-        // cartSize++;
+        item = req.body.item_name;
+        /* find index of the item to be removed */
+        for (index_to_rm = 0; index_to_rm < cartSize; index_to_rm++) {
+                obj = cart[index_to_rm].product_obj[0];
+                if (obj.product_name == item) {
+                        break;
+                }
+        }
+        /* remove obj */
+        cart.splice(index_to_rm, 1);
+        cartSize--;
 });
 
 
@@ -110,6 +111,7 @@ async function getFavs() {
 
 app.post("/order_complete", async (req, res) => {
         contact_info = {
+                fname: req.body.fname,
                 lname: req.body.lname,
                 address: req.body.address,
                 city: req.body.city,
@@ -118,8 +120,18 @@ app.post("/order_complete", async (req, res) => {
                 phone: req.body.phone
         }
 
+        await addToDatabase(contact_info);
         res.render('order_complete', {data: {cartItems: cart, errors: "none", cartSize: cartSize, totals: total_amounts, contact: contact_info}});
 });
+
+async function addToDatabase(contact) {
+        var collection = await database.collection("orders");
+
+        var newDoc = {"contact": contact, "items": cart, "total": total_amounts};
+        collection.insertOne(newDoc, function(err) {
+                if (err) throw err;
+        });
+}
 
 
 async function getProducts(categoryQuery) {
@@ -147,11 +159,16 @@ async function productQuery(productName) {
 }
 
 //// close connnection for db
+
 // validation
+
 // filter functionality
 // re write db
+
 // search "
-// add order to db
-// remove cart items
+// added dups
+
+
+
 
 app.listen(process.env.PORT || 3000);

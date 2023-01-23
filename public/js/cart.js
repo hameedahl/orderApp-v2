@@ -13,11 +13,11 @@ $(".rm-quan").click(function() {
 });
 
 $(".rm-cart").click(function () {
+        name_to_rm = $(this).parents(".cart-item-info").children(".item-title").children(".product-name").text();
         $(this).parents(".cart-item").remove();
-        name_to_rm = $(this).parents(".cart-item").children(".product-name").text();
         updateTotal();
-        item_name_to_rm = {
-                name: name_to_rm
+        item_to_rm = {
+                item_name: name_to_rm
         };
         /* update bag */
         cartSize = $(".cart-size").text();
@@ -27,7 +27,7 @@ $(".rm-cart").click(function () {
                 url: '/rm_from_bag',
                 type: 'post',
                 dataType: 'json',
-                data: item_name_to_rm,
+                data: item_to_rm,
                 success: function(serverResponse) {
                         console.log(serverResponse);
                 }
@@ -77,16 +77,18 @@ function updateTotal() {
         discount = $("#discount").val();
 
         var total = 0;
+        var subotal = 0;
         for (price = 0; price < pricesArr.length; price++) {
-                total += parseInt((pricesArr[price]).innerText);
+                subotal += parseInt((pricesArr[price]).innerText);
         }
 
+        total = subotal;
         if (discount > 0) {
-                total -= discount;
+                total = subotal - discount;
         }
 
-        $(".subtotal").text(total);
-        $("#subtotal-amount").val(total);
+        $(".subtotal").text(subotal);
+        $("#subtotal-amount").val(subotal);
 
         $(".tax").text();
         $("#tax-amount").val();
