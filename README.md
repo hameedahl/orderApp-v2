@@ -8,11 +8,8 @@ A web application developed for small businesses to take and manage customer ord
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
-- [How to Use](#how-to-use)
 - [Database](#database)
 - [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## About
 
@@ -59,7 +56,10 @@ To run this web application locally, follow these steps:
 ## Screenshots
 
 
-![homePage](https://github.com/hameedahl/orderApp-v2/assets/91581657/634c767f-b003-4095-a5da-e9e12da01c23)
+
+![homePage](https://github.com/hameedahl/orderApp-v2/assets/91581657/1ed9b49d-f2d8-48b6-90ce-31ce8e50cb84) ![bagCatalog](https://github.com/hameedahl/orderApp-v2/assets/91581657/8cce06f3-1068-437c-b3d4-f36b5d66b4dd) 
+
+![cart](https://github.com/hameedahl/orderApp-v2/assets/91581657/5397cf3a-8a84-4639-b5f5-985f335a63ae) ![orderForm](https://github.com/hameedahl/orderApp-v2/assets/91581657/ee7c6188-c0c5-4890-8c4f-beec8e1ca45f)
 
 
 
