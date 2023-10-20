@@ -133,6 +133,7 @@ app.post("/order_complete",
         } else {
                 /* stay on page and display errors */
                 res.render('order_form', {data: {cartItems: cart, errors: errors.array(), cartSize: cartSize, favs: favorites, totals: total_amounts, contact: contact_info}});
+                await client.close();
         }
 });
 
@@ -140,7 +141,18 @@ app.post("/order_complete",
 
 app.post("/filter", async (req, res) => {
         filter = req.body.filter;
-        {$and: [{category: "Cups"},{layers: "Single"}]}
+        if ((filter == "handle") || (filter == "noHandle")) {
+                allproducts = await filterGetProducts("Bags", "handle", filter);
+        console.log(allproducts)
+
+                res.render('bags', {data : {products : allproducts, errors: "none", cartSize: cartSize}});
+        } else {
+        console.log(allproducts)
+                allproducts = await filterGetProducts("Cups", "layers", filter);
+                res.render('cups', {data : {products : allproducts, errors: "none", cartSize: cartSize}});
+        }
+        productsLength = allproducts.length;
+
         // how can we just change array without reloading whole page
 });
 
@@ -161,6 +173,19 @@ async function getProducts(categoryQuery) {
                 /* get collection */
                 var collection = await database.collection("products");
                 var results = await collection.find({category: categoryQuery}).sort({_id: 1});
+                return results.toArray();
+        } catch (error) {
+                console.log(error);
+        }
+}
+
+async function filterGetProducts(categoryQuery, filter_type, filter_option) {
+        try {
+                await client.connect();
+                /* get collection */
+                var collection = await database.collection("products");
+        
+                var results = await collection.find({$and: [{category: categoryQuery}, {[filter_type]: filter_option}]}).sort({_id: 1});
                 return results.toArray();
         } catch (error) {
                 console.log(error);

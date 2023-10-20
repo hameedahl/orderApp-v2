@@ -256,7 +256,7 @@ a {
 }
 
 .product-img {
-        border: .5px solid #000;
+        border: .5px solid #000;     
         margin-bottom: 5px;
 }
 
@@ -678,6 +678,6 @@ a {
 
 .ordered-item-title p {
         font-size: 1rem;
-
 }
+
 /* ------- END ORDER COMPLETE ------- */
